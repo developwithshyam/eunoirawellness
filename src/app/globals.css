@@ -10,6 +10,8 @@
   --cream: #faf8f5;
   --charcoal: #1a1224;
   --white: #ffffff;
+  --hero-bg: #f6f4f8;
+  --audience-bg: #f2f5f3;
 }
 
 @theme inline {
@@ -21,6 +23,8 @@
   --color-sage: var(--sage);
   --color-cream: var(--cream);
   --color-charcoal: var(--charcoal);
+  --color-hero-bg: var(--hero-bg);
+  --color-audience-bg: var(--audience-bg);
   --font-sans: var(--font-google-sans);
   --font-highlight: var(--font-playfair);
 }

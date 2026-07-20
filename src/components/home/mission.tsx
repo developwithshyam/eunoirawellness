@@ -18,7 +18,7 @@ export function Mission() {
   const panelY = useTransform(scrollYProgress, [0, 1], [60, -60]);
 
   return (
-    <section ref={ref} className="overflow-hidden bg-cream py-20 md:py-28">
+    <section ref={ref} className="overflow-hidden bg-white py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>

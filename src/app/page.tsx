@@ -1,5 +1,4 @@
 import { AssessmentStrip } from "@/components/home/assessment-strip";
-import { AudienceCards } from "@/components/home/audience-cards";
 import { BlogPreview } from "@/components/home/blog-preview";
 import { Faq } from "@/components/home/faq";
 import { Hero } from "@/components/home/hero";
@@ -14,7 +13,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <AudienceCards />
       <Mission />
       <AssessmentStrip />
       <TherapistsSection />

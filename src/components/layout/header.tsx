@@ -42,9 +42,9 @@ export function Header() {
       : "bg-transparent";
 
   return (
-    <>
+    <div className="fixed top-0 right-0 left-0 z-50">
       {announcementVisible && isHome && (
-        <div className="relative z-50 bg-purple-deep text-white">
+        <div className="bg-purple-deep text-white">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 text-xs md:text-sm">
             <div className="flex flex-1 items-center justify-center gap-4 overflow-hidden md:gap-8">
               {workshops.map((w) => (
@@ -69,9 +69,7 @@ export function Header() {
         </div>
       )}
 
-      <header
-        className={`sticky top-0 z-40 transition-all duration-500 ${headerBg}`}
-      >
+      <header className={`transition-all duration-500 ${headerBg}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-4">
           <Link href="/" className="relative z-10 block shrink-0 bg-transparent">
             <BrandLogo variant="transparent" height={44} priority />
@@ -202,6 +200,6 @@ export function Header() {
           )}
         </AnimatePresence>
       </header>
-    </>
+    </div>
   );
 }

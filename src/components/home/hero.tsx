@@ -1,96 +1,42 @@
 "use client";
 
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { ClipboardList, Heart, User, Users } from "lucide-react";
+import Link from "next/link";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Reveal } from "@/components/ui/reveal";
-import { heroContent, testimonials } from "@/lib/content";
+import { Reveal, StaggerContainer, StaggerItem } from "@/components/ui/reveal";
+import { audienceCards, heroContent } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 
-function BotanicalShape({
-  className,
-  scrollYProgress,
-  speed,
-}: {
-  className: string;
-  scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
-  speed: number;
-}) {
-  const y = useTransform(scrollYProgress, [0, 1], [0, speed]);
-  return (
-    <motion.div style={{ y }} className={className}>
-      <svg viewBox="0 0 120 120" fill="none" className="h-full w-full">
-        <path
-          d="M60 10 C40 30, 20 50, 30 80 C35 95, 50 100, 60 90 C70 100, 85 95, 90 80 C100 50, 80 30, 60 10Z"
-          fill="currentColor"
-          opacity="0.15"
-        />
-        <path
-          d="M60 30 C50 45, 45 55, 50 70 C52 78, 58 82, 60 78 C62 82, 68 78, 70 70 C75 55, 70 45, 60 30Z"
-          fill="currentColor"
-          opacity="0.25"
-        />
-      </svg>
-    </motion.div>
-  );
-}
+const iconMap = {
+  user: User,
+  users: Users,
+  heart: Heart,
+  clipboard: ClipboardList,
+};
 
 export function Hero() {
-  const ref = useRef<HTMLElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
+    target: cardsRef,
+    offset: ["start end", "end start"],
   });
   const prefersReducedMotion = useReducedMotion();
-  const [tickerIndex, setTickerIndex] = useState(0);
-
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTickerIndex((prev) => (prev + 1) % testimonials.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
+  const y = useTransform(scrollYProgress, [0, 0.4], [24, 0]);
 
   return (
-    <section
-      ref={ref}
-      className="relative min-h-[90vh] overflow-hidden bg-gradient-to-b from-cream via-white to-cream pt-8 pb-20 md:pt-12 md:pb-28"
-    >
-      {!prefersReducedMotion && (
-        <motion.div style={{ y: bgY }} className="pointer-events-none absolute inset-0">
-          <BotanicalShape
-            className="absolute top-20 -left-10 h-40 w-40 text-sage md:h-64 md:w-64"
-            scrollYProgress={scrollYProgress}
-            speed={-80}
-          />
-          <BotanicalShape
-            className="absolute top-40 right-0 h-32 w-32 text-lavender md:h-48 md:w-48"
-            scrollYProgress={scrollYProgress}
-            speed={-120}
-          />
-          <BotanicalShape
-            className="absolute bottom-20 left-1/4 h-24 w-24 text-purple-mid/30 md:h-36 md:w-36"
-            scrollYProgress={scrollYProgress}
-            speed={-60}
-          />
-          <div className="absolute top-1/3 right-1/4 h-72 w-72 rounded-full bg-lavender/10 blur-3xl" />
-          <div className="absolute bottom-1/4 left-1/3 h-96 w-96 rounded-full bg-purple-mid/5 blur-3xl" />
-        </motion.div>
-      )}
-
-      <motion.div style={{ opacity }} className="relative mx-auto max-w-7xl px-4 md:px-6">
-        <div className="flex flex-col items-center text-center">
+    <section className="relative grid h-screen w-full grid-rows-[1fr_auto] overflow-visible">
+      <div className="relative z-10 flex items-center justify-center bg-linear-to-br from-violet-50 to-purple-100 px-4 md:px-6">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-center text-center">
           <Reveal delay={0.1}>
-            <p className="mb-4 text-lg font-medium text-sage md:text-xl">
+            <p className="mb-3 text-base font-medium text-sage md:mb-4 md:text-xl">
               {heroContent.greeting}
             </p>
           </Reveal>
 
           <Reveal delay={0.2}>
-            <h1 className="max-w-4xl text-4xl leading-tight font-semibold text-purple-deep md:text-5xl lg:text-6xl">
+            <h1 className="max-w-4xl text-3xl leading-tight font-semibold text-purple-deep sm:text-4xl md:text-5xl lg:text-6xl">
               We have the best{" "}
               <span className="font-highlight font-medium text-purple-mid">
                 psychologists and counsellors
@@ -100,13 +46,13 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={0.3}>
-            <p className="mt-6 max-w-2xl text-lg text-charcoal/70">
+            <p className="mt-4 max-w-2xl text-base text-charcoal/70 md:mt-6 md:text-lg">
               {heroContent.subheadline}
             </p>
           </Reveal>
 
           <Reveal delay={0.4}>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row md:mt-8 md:gap-4">
               <Button href={siteConfig.bookingUrl} size="lg">
                 {heroContent.ctaPrimary}
               </Button>
@@ -115,32 +61,38 @@ export function Hero() {
               </Button>
             </div>
           </Reveal>
-
-          <Reveal delay={0.5}>
-            <div className="mt-12 w-full max-w-xl rounded-2xl border border-sage/20 bg-white/60 px-6 py-4 backdrop-blur-sm">
-              <p className="mb-1 text-xs font-semibold tracking-wider text-sage uppercase">
-                Happy Clients
-              </p>
-              <div className="h-12 overflow-hidden">
-                <motion.div
-                  key={tickerIndex}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <p className="text-sm italic text-charcoal/80 md:text-base">
-                    &ldquo;{testimonials[tickerIndex].text}&rdquo;
-                  </p>
-                  <p className="mt-1 text-xs text-sage">
-                    — {testimonials[tickerIndex].author}
-                  </p>
-                </motion.div>
-              </div>
-            </div>
-          </Reveal>
         </div>
-      </motion.div>
+      </div>
+
+      <div className="relative shrink-0 bg-white px-4 pb-8 md:px-6 md:pb-12">
+        <motion.div
+          ref={cardsRef}
+          style={prefersReducedMotion ? {} : { y }}
+          className="relative z-20 -translate-y-1/2"
+        >
+          <StaggerContainer className="mx-auto grid max-w-7xl gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            {audienceCards.map((card) => {
+              const Icon = iconMap[card.icon];
+              return (
+                <StaggerItem key={card.title}>
+                  <Link
+                    href={card.href}
+                    className="group flex h-full flex-col items-center rounded-2xl border border-sage/10 bg-white p-5 text-center shadow-lg shadow-purple-deep/10 transition-all duration-300 hover:-translate-y-1 hover:border-sage/40 hover:shadow-xl hover:shadow-purple-deep/15 md:p-6"
+                  >
+                    <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-purple-mid/10 text-purple-mid transition-colors group-hover:bg-purple-mid group-hover:text-white md:mb-4 md:h-14 md:w-14">
+                      <Icon className="h-5 w-5 md:h-6 md:w-6" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-purple-deep md:text-xl">
+                      {card.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-sage">{card.subtitle}</p>
+                  </Link>
+                </StaggerItem>
+              );
+            })}
+          </StaggerContainer>
+        </motion.div>
+      </div>
     </section>
   );
 }
