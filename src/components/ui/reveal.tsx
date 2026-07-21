@@ -80,12 +80,14 @@ interface StaggerContainerProps {
   children: ReactNode;
   className?: string;
   staggerDelay?: number;
+  animateOnMount?: boolean;
 }
 
 export function StaggerContainer({
   children,
   className = "",
   staggerDelay = 0.1,
+  animateOnMount = false,
 }: StaggerContainerProps) {
   const [mounted, setMounted] = useState(false);
   const prefersReducedMotion = useReducedMotion();
@@ -101,8 +103,12 @@ export function StaggerContainer({
   return (
     <motion.div
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
+      {...(animateOnMount
+        ? { animate: "visible" }
+        : {
+            whileInView: "visible",
+            viewport: { once: true, margin: "-60px" },
+          })}
       variants={{
         hidden: {},
         visible: { transition: { staggerChildren: staggerDelay } },

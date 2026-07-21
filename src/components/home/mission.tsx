@@ -35,11 +35,8 @@ export function Mission() {
               </div>
             </Reveal>
             <Reveal delay={0.3}>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8">
                 <Button href={siteConfig.bookingUrl}>Book a Psychologist</Button>
-                <Button href={siteConfig.bookingUrl} variant="outline">
-                  Free Consultation
-                </Button>
               </div>
             </Reveal>
           </div>

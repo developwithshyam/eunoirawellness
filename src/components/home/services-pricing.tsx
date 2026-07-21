@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { serviceTabs } from "@/lib/content";
-import { siteConfig } from "@/lib/site-config";
+import { getServiceWhatsAppUrl } from "@/lib/site-config";
 
 export function ServicesPricing() {
   const [activeTab, setActiveTab] = useState(0);
@@ -63,7 +63,11 @@ export function ServicesPricing() {
                 <p className="mt-4 leading-relaxed text-charcoal/80">
                   {active.description}
                 </p>
-                <Button href={siteConfig.bookingUrl} className="mt-8">
+                <Button
+                  href={getServiceWhatsAppUrl(active.id)}
+                  external
+                  className="mt-8"
+                >
                   Book a Session
                 </Button>
               </motion.div>

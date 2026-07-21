@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import {
   getWhatsAppUrl,
   navLinks,
-  serviceDropdown,
   siteConfig,
   workshops,
 } from "@/lib/site-config";
@@ -18,7 +17,6 @@ import {
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
   const [announcementVisible, setAnnouncementVisible] = useState(true);
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -27,7 +25,6 @@ export function Header() {
   if (pathname !== prevPathname) {
     setPrevPathname(pathname);
     if (mobileOpen) setMobileOpen(false);
-    if (servicesOpen) setServicesOpen(false);
   }
 
   useEffect(() => {
@@ -90,39 +87,12 @@ export function Header() {
               </Link>
             ))}
 
-            <div
-              className="relative"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
+            <Link
+              href="/#services"
+              className="rounded-full px-4 py-2 text-sm font-medium text-charcoal/80 transition-colors hover:text-purple-deep"
             >
-              <button
-                type="button"
-                className="rounded-full px-4 py-2 text-sm font-medium text-charcoal/80 transition-colors hover:text-purple-deep"
-              >
-                Services
-              </button>
-              <AnimatePresence>
-                {servicesOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-1 w-56 rounded-2xl border border-sage/20 bg-white p-2 shadow-xl shadow-purple-deep/10"
-                  >
-                    {serviceDropdown.map((item) => (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        className="block rounded-xl px-4 py-2.5 text-sm text-charcoal/80 transition-colors hover:bg-purple-mid/10 hover:text-purple-deep"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+              Services
+            </Link>
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
@@ -170,18 +140,12 @@ export function Header() {
                     {link.label}
                   </Link>
                 ))}
-                <p className="mt-2 px-4 text-xs font-semibold uppercase tracking-wider text-sage">
+                <Link
+                  href="/#services"
+                  className="rounded-xl px-4 py-3 text-base font-medium text-charcoal hover:bg-purple-mid/10"
+                >
                   Services
-                </p>
-                {serviceDropdown.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="rounded-xl px-4 py-2.5 text-sm text-charcoal/80 hover:bg-purple-mid/10"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                </Link>
                 <div className="mt-4 flex flex-col gap-2 px-4">
                   <Button href={siteConfig.bookingUrl} className="w-full">
                     Book a Therapist

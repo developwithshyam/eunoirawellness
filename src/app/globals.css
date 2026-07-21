@@ -99,8 +99,8 @@ body {
 @media (max-width: 639px) {
   :root {
     --hero-header-offset: 6rem;
-    --hero-card-overlap: 2.5rem;
-    --hero-cards-footprint: 5rem;
+    --hero-card-overlap: 3rem;
+    --hero-cards-footprint: 11.5rem;
   }
 }
 
