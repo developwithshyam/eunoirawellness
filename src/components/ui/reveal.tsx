@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { type ReactNode } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 
 type RevealVariant = "fade-up" | "fade-in" | "fade-left" | "fade-right";
 
@@ -33,6 +33,16 @@ const variants: Record<RevealVariant, Variants> = {
   },
 };
 
+function StaticWrap({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className={className}>{children}</div>;
+}
+
 export function Reveal({
   children,
   variant = "fade-up",
@@ -41,10 +51,15 @@ export function Reveal({
   className = "",
   once = true,
 }: RevealProps) {
+  const [mounted, setMounted] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || prefersReducedMotion) {
+    return <StaticWrap className={className}>{children}</StaticWrap>;
   }
 
   return (
@@ -72,10 +87,15 @@ export function StaggerContainer({
   className = "",
   staggerDelay = 0.1,
 }: StaggerContainerProps) {
+  const [mounted, setMounted] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || prefersReducedMotion) {
+    return <StaticWrap className={className}>{children}</StaticWrap>;
   }
 
   return (
@@ -101,10 +121,15 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
+  const [mounted, setMounted] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || prefersReducedMotion) {
+    return <StaticWrap className={className}>{children}</StaticWrap>;
   }
 
   return (

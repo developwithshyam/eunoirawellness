@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Google_Sans, Playfair_Display } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
-import { LoadingScreen } from "@/components/layout/loading-screen";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/site-config";
@@ -104,7 +103,6 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-cream font-sans text-charcoal">
         <JsonLd data={organizationSchema} />
-        <LoadingScreen />
         <SmoothScroll>
           <Header />
           <main className="flex-1">{children}</main>
