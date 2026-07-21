@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Contact Eunoira Wellness to book confidential online counselling for women and children, ask a question, or explore career opportunities.",
+    "Contact Eunoira Wellness to book confidential counselling for women and children, ask a question, or explore career opportunities.",
   alternates: {
     canonical: `${siteConfig.url}/contact`,
   },

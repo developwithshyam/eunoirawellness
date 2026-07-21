@@ -63,14 +63,6 @@ export function ServicesPricing() {
                 <p className="mt-4 leading-relaxed text-charcoal/80">
                   {active.description}
                 </p>
-                <div className="mt-6 flex flex-wrap items-center gap-4 text-sm">
-                  <span className="rounded-full bg-purple-mid/10 px-4 py-1.5 font-medium text-purple-deep">
-                    Duration: {active.duration}
-                  </span>
-                  <span className="font-semibold text-purple-mid">
-                    {active.price}
-                  </span>
-                </div>
                 <Button href={siteConfig.bookingUrl} className="mt-8">
                   Book a Session
                 </Button>

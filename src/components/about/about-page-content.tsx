@@ -1,7 +1,5 @@
 "use client";
 
-import { useInView, useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Reveal, StaggerContainer, StaggerItem } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -12,53 +10,19 @@ import {
 } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 
-function AnimatedStat({
-  value,
-  suffix,
-  label,
-  decimals = 0,
+function ValueCard({
+  title,
+  description,
 }: {
-  value: number;
-  suffix: string;
-  label: string;
-  decimals?: number;
+  title: string;
+  description: string;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true });
-  const prefersReducedMotion = useReducedMotion();
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!isInView) return;
-    if (prefersReducedMotion) {
-      const id = requestAnimationFrame(() => setCount(value));
-      return () => cancelAnimationFrame(id);
-    }
-
-    const duration = 2000;
-    const steps = 60;
-    const increment = value / steps;
-    let step = 0;
-
-    const timer = setInterval(() => {
-      step++;
-      setCount(Math.min(value, increment * step));
-      if (step >= steps) clearInterval(timer);
-    }, duration / steps);
-
-    return () => clearInterval(timer);
-  }, [isInView, value, prefersReducedMotion]);
-
-  const display =
-    decimals > 0 ? count.toFixed(decimals) : Math.floor(count).toLocaleString();
-
   return (
-    <div ref={ref} className="text-center">
-      <p className="font-highlight text-4xl font-medium text-purple-deep md:text-5xl">
-        {display}
-        {suffix}
+    <div className="group rounded-2xl border border-sage/20 bg-white p-6 text-center transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-deep/5">
+      <h3 className="text-xl font-semibold text-purple-deep">{title}</h3>
+      <p className="mt-3 text-sm leading-relaxed text-charcoal/70">
+        {description}
       </p>
-      <p className="mt-2 text-sm text-charcoal/70">{label}</p>
     </div>
   );
 }
@@ -139,15 +103,10 @@ export function AboutPageContent() {
               subtitle={aboutContent.statsSubtitle}
             />
           </Reveal>
-          <StaggerContainer className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {aboutContent.stats.map((stat) => (
-              <StaggerItem key={stat.label}>
-                <AnimatedStat
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  label={stat.label}
-                  decimals={"decimals" in stat ? stat.decimals : 0}
-                />
+          <StaggerContainer className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {aboutContent.values.map((value) => (
+              <StaggerItem key={value.title}>
+                <ValueCard title={value.title} description={value.description} />
               </StaggerItem>
             ))}
           </StaggerContainer>

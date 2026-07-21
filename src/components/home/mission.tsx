@@ -62,7 +62,7 @@ export function Mission() {
                   </div>
                   <div>
                     <p className="font-highlight text-3xl font-medium text-purple-deep">100%</p>
-                    <p className="mt-1 text-xs text-sage">online & confidential</p>
+                    <p className="mt-1 text-xs text-sage">private & confidential</p>
                   </div>
                   <div>
                     <p className="font-highlight text-3xl font-medium text-purple-deep">24/7</p>

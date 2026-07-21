@@ -1,91 +1,68 @@
 "use client";
 
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { BadgeCheck, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { testimonials, testimonialsContent } from "@/lib/content";
 
-function CountUp({
-  target,
-  suffix = "",
-}: {
-  target: string;
-  suffix?: string;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-  const prefersReducedMotion = useReducedMotion();
-  const numericPart = parseInt(target.replace(/[^0-9]/g, ""), 10);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!isInView) return;
-    if (prefersReducedMotion) {
-      const id = requestAnimationFrame(() => setCount(numericPart));
-      return () => cancelAnimationFrame(id);
-    }
-
-    let start = 0;
-    const duration = 2000;
-    const step = Math.ceil(numericPart / (duration / 16));
-
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= numericPart) {
-        setCount(numericPart);
-        clearInterval(timer);
-      } else {
-        setCount(start);
-      }
-    }, 16);
-
-    return () => clearInterval(timer);
-  }, [isInView, numericPart, prefersReducedMotion]);
-
-  const formatted = count.toLocaleString();
-
-  return (
-    <span ref={ref}>
-      {formatted}
-      {suffix}
-    </span>
-  );
-}
-
 export function Testimonials() {
   const [index, setIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
+  const goToPrev = useCallback(() => {
+    setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  }, []);
+
+  const goToNext = useCallback(() => {
+    setIndex((prev) => (prev + 1) % testimonials.length);
+  }, []);
+
   useEffect(() => {
+    if (isPaused) return;
+
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % testimonials.length);
     }, 5000);
+
     return () => clearInterval(interval);
-  }, []);
+  }, [isPaused]);
 
   return (
     <section className="bg-gradient-to-b from-cream to-white py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <Reveal>
-          <div className="text-center">
-            <p className="font-highlight text-5xl font-medium text-purple-deep md:text-6xl lg:text-7xl">
-              <CountUp
-                target={testimonialsContent.stat}
-                suffix="+"
-              />
-            </p>
-            <SectionHeading
-              title={testimonialsContent.heading}
-              subtitle={testimonialsContent.subheading}
-              className="mt-4"
-            />
-          </div>
+          <SectionHeading
+            eyebrow={testimonialsContent.eyebrow}
+            title={testimonialsContent.heading}
+            subtitle={testimonialsContent.subheading}
+          />
         </Reveal>
 
         <Reveal delay={0.2}>
-          <div className="relative mx-auto mt-12 max-w-3xl">
-            <div className="min-h-[200px] rounded-3xl border border-sage/20 bg-white p-8 md:p-12">
+          <div
+            className="relative mx-auto mt-12 max-w-3xl"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onFocusCapture={() => setIsPaused(true)}
+            onBlurCapture={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) {
+                setIsPaused(false);
+              }
+            }}
+          >
+            <button
+              type="button"
+              onClick={goToPrev}
+              className="absolute top-1/2 -left-4 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-sage/20 bg-white text-purple-deep shadow-sm transition-colors hover:border-purple-mid/30 hover:bg-cream md:-left-14"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+
+            <div className="min-h-[260px] rounded-3xl border border-sage/20 bg-white p-8 md:p-12">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={index}
@@ -93,20 +70,33 @@ export function Testimonials() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={prefersReducedMotion ? undefined : { opacity: 0, x: -30 }}
                   transition={{ duration: 0.4 }}
-                  className="text-center"
+                  className="flex h-full flex-col items-center text-center"
                 >
+                  <Quote
+                    className="mb-4 h-8 w-8 text-lavender/60"
+                    aria-hidden="true"
+                  />
                   <p className="text-lg leading-relaxed text-charcoal/80 md:text-xl">
                     &ldquo;{testimonials[index].text}&rdquo;
                   </p>
-                  <p className="mt-6 text-sm font-medium text-purple-deep">
-                    — {testimonials[index].author}
-                  </p>
-                  <p className="mt-1 text-xs text-sage">
-                    Review for {testimonials[index].therapist}
-                  </p>
+                  <div className="mt-6 flex items-center gap-2">
+                    <BadgeCheck className="h-4 w-4 text-sage" aria-hidden="true" />
+                    <p className="text-sm font-medium text-purple-deep">
+                      {testimonials[index].author}
+                    </p>
+                  </div>
                 </motion.div>
               </AnimatePresence>
             </div>
+
+            <button
+              type="button"
+              onClick={goToNext}
+              className="absolute top-1/2 -right-4 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-sage/20 bg-white text-purple-deep shadow-sm transition-colors hover:border-purple-mid/30 hover:bg-cream md:-right-14"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
 
             <div className="mt-6 flex justify-center gap-2">
               {testimonials.map((_, i) => (

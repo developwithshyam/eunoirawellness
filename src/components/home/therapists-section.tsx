@@ -1,97 +1,55 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Reveal } from "@/components/ui/reveal";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { conditions, therapists, therapistsSection } from "@/lib/content";
-import { siteConfig } from "@/lib/site-config";
+import Image from "next/image";
+import { Reveal, StaggerContainer, StaggerItem } from "@/components/ui/reveal";
+import { therapists, therapistsSection } from "@/lib/content";
 
 function TherapistCard({
   therapist,
 }: {
   therapist: (typeof therapists)[number];
 }) {
-  const initials = therapist.name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .slice(0, 2);
-
   return (
-    <div className="w-72 shrink-0 rounded-2xl border border-sage/20 bg-white p-6 shadow-sm transition-shadow hover:shadow-md hover:shadow-purple-deep/5">
-      <div className="mb-4 flex items-center gap-4">
-        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-purple-mid to-lavender text-lg font-semibold text-white">
-          {initials}
-        </div>
-        <div>
-          <h4 className="font-medium text-purple-deep">{therapist.name}</h4>
-          <p className="text-xs text-sage">{therapist.role}</p>
-        </div>
+    <div className="group relative aspect-[3/4] overflow-hidden rounded-2xl">
+      <Image
+        src={therapist.image}
+        alt={therapist.name}
+        fill
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-purple-deep/90 via-purple-deep/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 p-5 md:p-6">
+        <h3 className="text-lg font-semibold text-white">{therapist.name}</h3>
+        <p className="mt-1 text-sm text-white/90">{therapist.role}</p>
+        <p className="mt-1 text-xs text-white/75">{therapist.education}</p>
       </div>
-      <div className="space-y-1 text-sm text-charcoal/70">
-        <p>{therapist.experience} experience</p>
-        <p>{therapist.languages}</p>
-        <p className="font-semibold text-purple-mid">
-          From {therapist.price}/session
-        </p>
-      </div>
-      <Button href={siteConfig.bookingUrl} size="sm" className="mt-4 w-full">
-        Book Now
-      </Button>
     </div>
   );
 }
 
 export function TherapistsSection() {
-  const prefersReducedMotion = useReducedMotion();
-  const doubled = [...therapists, ...therapists];
-
   return (
-    <section id="therapists" className="bg-white py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-4 md:px-6">
+    <section id="therapists" className="relative z-10 -mt-16 bg-transparent pt-8 pb-20 md:-mt-24 md:pt-12 md:pb-28">
+      <div className="mx-auto max-w-7xl px-4 md:px-6 mt-28">
         <Reveal>
-          <SectionHeading
-            title={therapistsSection.heading}
-            subtitle={therapistsSection.subheading}
-          />
-        </Reveal>
-
-        <Reveal delay={0.2}>
-          <div className="mt-8 flex flex-wrap justify-center gap-2 md:mt-12">
-            {conditions.map((condition) => (
-              <span
-                key={condition}
-                className="cursor-default rounded-full border border-sage/30 bg-cream px-4 py-1.5 text-sm text-charcoal/80 transition-all hover:border-purple-mid hover:bg-purple-mid/10 hover:text-purple-deep"
-              >
-                {condition}
-              </span>
-            ))}
+          <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
+            <h2 className="text-3xl font-semibold text-purple-deep md:text-4xl lg:text-5xl">
+              {therapistsSection.heading}
+            </h2>
+            <p className="text-lg leading-relaxed text-charcoal/70 lg:max-w-md lg:justify-self-end">
+              {therapistsSection.subheading}
+            </p>
           </div>
         </Reveal>
 
-        <div className="relative mt-12 overflow-hidden">
-          <div className="pointer-events-none absolute top-0 left-0 z-10 h-full w-16 bg-gradient-to-r from-white to-transparent" />
-          <div className="pointer-events-none absolute top-0 right-0 z-10 h-full w-16 bg-gradient-to-l from-white to-transparent" />
-
-          <motion.div
-            className="flex gap-6"
-            animate={
-              prefersReducedMotion
-                ? {}
-                : { x: ["0%", "-50%"] }
-            }
-            transition={
-              prefersReducedMotion
-                ? {}
-                : { duration: 30, repeat: Infinity, ease: "linear" }
-            }
-          >
-            {doubled.map((therapist, i) => (
-              <TherapistCard key={`${therapist.name}-${i}`} therapist={therapist} />
-            ))}
-          </motion.div>
-        </div>
+        <StaggerContainer className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {therapists.map((therapist) => (
+            <StaggerItem key={therapist.name}>
+              <TherapistCard therapist={therapist} />
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
     </section>
   );

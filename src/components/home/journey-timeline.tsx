@@ -19,7 +19,7 @@ export function JourneyTimeline() {
         </Reveal>
 
         <StaggerContainer className="relative mt-16 grid gap-8 md:grid-cols-3 md:gap-6">
-          <div className="absolute top-1/2 right-[16.67%] left-[16.67%] hidden h-0.5 -translate-y-1/2 bg-gradient-to-r from-purple-mid via-lavender to-sage md:block" />
+          <div className="absolute top-8 right-[16.67%] left-[16.67%] hidden h-0.5 md:block bg-gradient-to-r from-purple-mid via-lavender to-sage" />
 
           {journeyContent.stages.map((stage, index) => (
             <StaggerItem key={stage.label}>

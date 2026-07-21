@@ -21,15 +21,15 @@ export function getWhatsAppUrl(intent: WhatsAppIntent = "general") {
 
 export const siteConfig = {
   name: "Eunoira Wellness",
-  title: "Eunoira Wellness | Online Counselling for Women & Children",
+  title: "Eunoira Wellness | Counselling for Women & Children",
   tagline: "Your companion in your healing journey",
   description:
-    "Eunoira Wellness offers confidential online counselling for women and children, connecting you with compassionate psychological support from the comfort of home.",
+    "Eunoira Wellness offers confidential counselling for women and children, connecting you with compassionate psychological support from qualified professionals.",
   keywords: [
-    "online counselling",
+    "counselling",
     "women counselling",
     "children counselling",
-    "online therapy",
+    "therapy",
     "mental health support",
     "psychological support",
     "confidential counselling",
@@ -83,7 +83,6 @@ export const footerColumns = [
     title: "Resources",
     links: [
       { label: "About Us", href: "/about" },
-      { label: "Blog", href: "/#blog" },
       { label: "Careers", href: "/contact?intent=careers" },
       { label: "Contact Us", href: "/contact" },
     ],

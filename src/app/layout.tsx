@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/logo-full.png",
-        alt: `${siteConfig.name} — Online Counselling for Women & Children`,
+        alt: `${siteConfig.name} — Counselling for Women & Children`,
       },
     ],
   },

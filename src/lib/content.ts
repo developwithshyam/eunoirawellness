@@ -2,7 +2,7 @@ export const heroContent = {
   greeting: "Hey, How are you?",
   headline: "We have the best psychologists and counsellors for you!",
   subheadline:
-    "Confidential, compassionate online therapy — from the comfort of your home.",
+    "Confidential, compassionate therapy tailored to your needs.",
   ctaPrimary: "View Instant Availability",
   ctaSecondary: "Book a Therapist",
   tickerQuote: {
@@ -53,11 +53,20 @@ export const assessmentStrip = {
   whatsappLabel: "Get a swift reply on your WhatsApp",
 };
 
+export const foundersNoteContent = {
+  heading: "Meet Our Founder",
+  eyebrow: "Founder's Note",
+  quote:
+    "Eunoira Wellness was founded on the belief that compassionate care, thoughtful reflection, and evidence-based practice can empower individuals to lead healthier, more meaningful lives. Our mission is to create a space where healing begins with understanding and every journey is met with dignity, empathy, and hope.",
+  name: "Soumya Ayoob",
+  role: "Founder, Eunoira Wellness",
+  image: "/images/founder.png",
+};
+
 export const therapistsSection = {
-  heading:
-    "The best counsellors and therapists are your Eunoira now.",
+  heading: "Meet Our Psychologists",
   subheading:
-    "We pick the best of the best by looking at their experience and qualifications to help and understand you better.",
+    "Compassionate, qualified professionals dedicated to supporting your mental health journey with evidence-based care.",
 };
 
 export const conditions = [
@@ -77,52 +86,28 @@ export const conditions = [
 
 export const therapists = [
   {
-    name: "Dr. Priya Menon",
-    role: "Clinical Psychologist",
-    experience: "10+ years",
-    languages: "English, Hindi",
-    price: "₹749",
+    name: "Lakshmy Nandana",
+    role: "Consultant Psychologist",
+    education: "Masters in Clinical Psychology",
+    image: "/images/lakshmi.png",
   },
   {
-    name: "Ananya Sharma",
-    role: "Counselling Psychologist",
-    experience: "8+ years",
-    languages: "English, Tamil",
-    price: "₹749",
+    name: "Anumol S Antony",
+    role: "Consultant Psychologist",
+    education: "Masters in Counselling Psychology",
+    image: "/images/anumol.png",
   },
   {
-    name: "Dr. Meera Nair",
-    role: "Relationship Therapist",
-    experience: "12+ years",
-    languages: "English, Malayalam",
-    price: "₹899",
-  },
-  {
-    name: "Riya Kapoor",
-    role: "Child & Teen Specialist",
-    experience: "6+ years",
-    languages: "English, Hindi",
-    price: "₹749",
-  },
-  {
-    name: "Dr. Arjun Das",
-    role: "Clinical Psychologist",
-    experience: "9+ years",
-    languages: "English, Bengali",
-    price: "₹799",
-  },
-  {
-    name: "Sneha Pillai",
-    role: "Trauma Specialist",
-    experience: "7+ years",
-    languages: "English, Malayalam",
-    price: "₹749",
+    name: "Devapriya S Biju",
+    role: "Consultant Psychologist",
+    education: "Masters in Clinical Psychology",
+    image: "/images/devapriya.png",
   },
 ] as const;
 
 export const journeyContent = {
   heading: "Eunoira is Easy, Simple & Confidential",
-  body: "Eunoira psychologists offer expert counseling that is effective, budget-friendly, and tailored to your specific needs. Enjoy personalized online counselling from the best psychologists, right from your home.",
+  body: "Eunoira psychologists offer expert counseling that is effective, budget-friendly, and tailored to your specific needs. Enjoy personalized therapy sessions with qualified professionals who truly understand you.",
   stages: [
     {
       label: "Today",
@@ -146,77 +131,56 @@ export const serviceTabs = [
   {
     id: "therapy",
     label: "Therapy",
-    title: "Consultation",
+    title: "Therapy",
     description:
       "Psychotherapy involves talking with a trained therapist to address emotional challenges and improve mental well-being through supportive conversation and coping strategies.",
-    duration: "50 minutes",
-    price: "Starting from ₹749",
   },
   {
     id: "counselling",
     label: "Counselling",
-    title: "Consultation",
+    title: "Counselling",
     description:
       "Counselling involves providing guidance and support to individuals or groups to address personal or psychological issues, improve coping skills, and promote emotional well-being.",
-    duration: "50 minutes",
-    price: "Starting from ₹749",
   },
   {
     id: "psychiatrist",
     label: "Psychiatrist",
-    title: "Consultation",
+    title: "Psychiatrist",
     description:
       "Psychiatry involves diagnosing and treating mental health disorders through medication and therapy.",
-    duration: "30 minutes",
-    price: "Starting from ₹1699",
   },
   {
     id: "couple",
     label: "Couple",
-    title: "Consultation",
+    title: "Couple Therapy",
     description:
       "Couple therapy helps partners improve communication, resolve conflicts, and strengthen their emotional connection for a healthier relationship.",
-    duration: "1 hour and 20 minutes",
-    price: "Starting from ₹1699",
   },
 ] as const;
 
 export const testimonialsContent = {
-  stat: "9,000+",
-  heading: "We Helped People Around The Globe.",
-  subheading: "What people say about our therapists.",
+  eyebrow: "Verified Client Reviews",
+  heading: "Stories from People We've Supported",
+  subheading:
+    "Real feedback from clients who chose Eunoira for their mental health journey.",
 };
 
 export const testimonials = [
   {
-    text: "At Eunoira, I feel safe and supportive. I was able to open up easily.",
-    author: "Client of Dr. Priya",
-    therapist: "Dr. Priya Menon",
-  },
-  {
-    text: "Dr. Arjun was super friendly and got what I was going through right away. It was easy to chat with him.",
+    text: "I discovered Eunoira Wellness on Instagram, and Soumya's CBT therapy, guidance, and meditation techniques helped me overcome mild depression and anxiety — I'm very satisfied with my experience.",
     author: "Verified Client",
-    therapist: "Dr. Arjun Das",
   },
   {
-    text: "Sneha is the super human woman that I needed the most. Right choice for me.",
+    text: "I had a positive first therapy session with Soumya, who was kind, patient, and made me feel comfortable. I look forward to continuing my therapy journey.",
     author: "Verified Client",
-    therapist: "Sneha Pillai",
   },
   {
-    text: "Meera helps to calm me down. Eunoira really helps especially people like me who live abroad.",
+    text: "Eunoira Wellness gave me the support I needed during a difficult time. Soumya's compassionate guidance helped me manage stress, gain clarity, and feel truly heard — I highly recommend their professional counselling services.",
     author: "Verified Client",
-    therapist: "Dr. Meera Nair",
   },
   {
-    text: "I was able to realize and come out of a toxic relationship. Thank you Eunoira.",
+    text: "My therapy sessions were supportive and professional, helping me understand my emotions better and develop practical coping strategies. I'm grateful for the guidance and highly recommend their compassionate mental health support.",
     author: "Verified Client",
-    therapist: "Ananya Sharma",
-  },
-  {
-    text: "Divorce to dancing together. We both didn't like the idea of counselling initially. Now look at us. Thank you Eunoira.",
-    author: "Verified Couple",
-    therapist: "Dr. Meera Nair",
   },
 ] as const;
 
@@ -232,46 +196,25 @@ export const faqItems = [
       "That could be symptoms of anxiety. Feeling tense for no reason is common, but if it's impacting your life, seeing a therapist is a good step. Our psychologists can help you understand your patterns and develop healthy coping strategies.",
   },
   {
-    question: "Is online therapy just as effective as traditional therapy?",
+    question: "Is therapy effective for mental health concerns?",
     answer:
-      "Online or offline, what matters the most is the quality of therapy you get. Research consistently shows that online therapy can be just as effective as in-person sessions for many mental health concerns.",
+      "What matters most is the quality of therapy you receive and the rapport you build with your therapist. Research consistently shows that talk therapy can be highly effective for many mental health concerns when delivered by trained professionals.",
   },
   {
-    question: "Is online counseling a good option for family issues?",
+    question: "Is counseling a good option for family issues?",
     answer:
       "Family tensions got you down? Eunoira can help! Talk things out safely, learn to communicate better, and build a stronger family. Eunoira tackles family issues and relationship struggles. Remember, seeking help is a sign of strength!",
   },
   {
-    question: "Can I book a psychologist while I am outside the country?",
+    question: "How do I book a session with a psychologist?",
     answer:
-      "Yes, Eunoira services are 100% online. So booking a psychologist, counsellor or psychiatrist is now easy, no matter where you are in the world.",
+      "Booking a psychologist or counsellor at Eunoira is simple. Reach out through our contact page or WhatsApp, and our team will help you find a suitable time and guide you through the next steps.",
   },
   {
     question:
       "I don't necessarily feel like I have a mental health condition, but I'm just not feeling happy. Can therapy help?",
     answer:
       "Therapy can be a valuable tool even if you don't have a diagnosed mental health condition. It can be a safe space to explore your feelings, identify negative thought patterns, and develop coping mechanisms for stress or anxiety.",
-  },
-] as const;
-
-export const blogPosts = [
-  {
-    title: "What Is Burnout? Signs, Symptoms, and How It Affects Mental Health",
-    excerpt:
-      "Learn to recognize burnout before it takes a toll on your wellbeing and discover practical steps to recover.",
-    href: "#",
-  },
-  {
-    title: "Signs of a Toxic Relationship: How to Know If Your Relationship Is Unhealthy",
-    excerpt:
-      "Understanding the warning signs can help you make informed decisions about your relationships.",
-    href: "#",
-  },
-  {
-    title: "5 Stages of Grief: Understanding the Grieving Process After Loss",
-    excerpt:
-      "Grief is a natural response to loss. Learn about the stages and how to navigate them with support.",
-    href: "#",
   },
 ] as const;
 
@@ -288,19 +231,32 @@ export const aboutContent = {
   storyParagraphs: [
     `Eunoira didn't begin as a mere business idea; it started as a deep feeling. A feeling that couldn't be ignored. A feeling that people deserve more than just a quick solution — they deserve to be understood.`,
     `We gathered a group of people around one simple question: What if seeking mental health support felt different, more personal and more comfortable?`,
-    `That question led us to build Eunoira, with the help of science, technology and empathy. A space designed to make online counselling more accessible and more human for people around the world.`,
+    `That question led us to build Eunoira, with the help of science, technology and empathy. A space designed to make counselling more accessible and more human for people who need support.`,
     `Our mission has always been simple: to make people feel seen, heard and understood in their own language and cultural context.`,
     `Eunoira is not just a name which means "good mind"; it is an enduring promise we made to walk beside people through life's challenges, no matter where they are in the world.`,
     `Today, Eunoira has evolved beyond a digital platform. It is a community connecting people with compassionate mental health care, with a core belief that human connection remains one of the most powerful forces for healing.`,
   ],
-  statsTitle: "Trusted by thousands",
+  statsTitle: "What We Stand For",
   statsSubtitle:
-    "Each number here reflects a story of trust, care, and healing that has quietly reached a little further.",
-  stats: [
-    { value: 32000, suffix: "+", label: "Session hours completed with care" },
-    { value: 45, suffix: "+", label: "Team members ensuring healing" },
-    { value: 4.8, suffix: "", label: "Stars — happy clients lead to growth", decimals: 1 },
-    { value: 103, suffix: "", label: "Countries we aim to reach" },
+    "Eunoira is a growing practice built on compassion, evidence, and making mental health support feel human.",
+  values: [
+    {
+      title: "Compassionate Care",
+      description: "One-on-one support in a safe, non-judgmental space.",
+    },
+    {
+      title: "Evidence-Based",
+      description: "CBT, mindfulness, and proven counselling techniques.",
+    },
+    {
+      title: "Accessible Care",
+      description: "Flexible sessions designed to fit your schedule and comfort.",
+    },
+    {
+      title: "Truly Heard",
+      description:
+        "Guidance that helps you manage stress, gain clarity, and feel understood.",
+    },
   ],
   advisoryTitle: "Guided by Our Advisory Board",
   leadershipTitle: "Leadership Team",

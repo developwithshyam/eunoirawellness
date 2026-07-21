@@ -124,9 +124,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
   min-height: calc(100dvh - var(--hero-cards-footprint));
   padding-top: var(--hero-header-offset);
-  padding-bottom: var(--hero-card-overlap);
+  padding-bottom: calc(var(--hero-card-overlap) + 3rem);
+}
+
+@media (min-width: 768px) {
+  .hero-gradient {
+    padding-bottom: calc(var(--hero-card-overlap) + 4rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-gradient {
+    padding-bottom: calc(var(--hero-card-overlap) + 5rem);
+  }
 }
 
 .hero-content {
