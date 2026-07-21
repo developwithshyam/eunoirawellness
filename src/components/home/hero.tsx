@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Reveal, StaggerContainer, StaggerItem } from "@/components/ui/reveal";
 import { audienceCards, heroContent } from "@/lib/content";
-import { siteConfig } from "@/lib/site-config";
+import { getWhatsAppUrl, siteConfig } from "@/lib/site-config";
 
 const iconMap = {
   user: User,
@@ -53,11 +53,11 @@ export function Hero() {
 
           <Reveal delay={0.4}>
             <div className="hero-ctas mt-6 flex flex-col gap-3 sm:flex-row md:mt-8 md:gap-4">
-              <Button href={siteConfig.bookingUrl} size="lg" className="w-full sm:w-auto">
-                {heroContent.ctaPrimary}
+              <Button href="/#services" size="lg" className="w-full sm:w-auto">
+                Check our services
               </Button>
               <Button
-                href={siteConfig.bookingUrl}
+                href={getWhatsAppUrl("general")}
                 variant="outline"
                 size="lg"
                 className="w-full sm:w-auto"

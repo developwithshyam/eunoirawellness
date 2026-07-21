@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Mail, MessageCircle, Phone } from "lucide-react";
 import { InstagramIcon, LinkedinIcon } from "@/components/ui/social-icons";
 import { useSearchParams } from "next/navigation";
@@ -15,7 +15,6 @@ interface FormData {
   email: string;
   phone: string;
   intent: string;
-  position: string;
   message: string;
 }
 
@@ -27,21 +26,23 @@ interface FormErrors {
   message?: string;
 }
 
+const initialForm = (intent: string): FormData => ({
+  name: "",
+  email: "",
+  phone: "",
+  intent,
+  message: "",
+});
+
 function ContactForm() {
   const searchParams = useSearchParams();
   const defaultIntent = searchParams.get("intent") || "general";
 
-  const [form, setForm] = useState<FormData>({
-    name: "",
-    email: "",
-    phone: "",
-    intent: defaultIntent,
-    position: "",
-    message: "",
-  });
+  const [form, setForm] = useState<FormData>(() => initialForm(defaultIntent));
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
-  const [fileName, setFileName] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -58,10 +59,40 @@ function ContactForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validate()) {
+    setError(null);
+    if (!validate()) return;
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          intent: form.intent,
+          message: form.message,
+          _gotcha: "",
+        }),
+      });
+
+      const data = (await response.json()) as { ok?: boolean; error?: string };
+
+      if (!response.ok || !data.ok) {
+        setError(data.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+
+      setForm(initialForm(defaultIntent));
       setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -88,6 +119,15 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      <input
+        type="text"
+        name="_gotcha"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
+
       <div className="grid gap-5 md:grid-cols-2">
         <div>
           <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-charcoal">
@@ -167,53 +207,9 @@ function ContactForm() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {form.intent === "careers" && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-          >
-            <label htmlFor="position" className="mb-1.5 block text-sm font-medium text-charcoal">
-              Position (If Career)
-            </label>
-            <input
-              id="position"
-              type="text"
-              value={form.position}
-              onChange={(e) => updateField("position", e.target.value)}
-              className="w-full rounded-xl border border-sage/30 bg-white px-4 py-3 text-sm focus:border-purple-mid focus:outline-none focus:ring-2 focus:ring-purple-mid/20"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div>
-        <label htmlFor="file" className="mb-1.5 block text-sm font-medium text-charcoal">
-          Upload File
-        </label>
-        <div className="flex items-center gap-3">
-          <label className="cursor-pointer rounded-xl border border-sage/30 bg-white px-4 py-3 text-sm text-charcoal/70 transition-colors hover:border-purple-mid">
-            Choose file
-            <input
-              id="file"
-              type="file"
-              className="hidden"
-              onChange={(e) => setFileName(e.target.files?.[0]?.name || "")}
-            />
-          </label>
-          {fileName && (
-            <span className="text-sm text-sage">{fileName}</span>
-          )}
-        </div>
-        <p className="mt-1 text-xs text-charcoal/50">
-          Upload supported file (Max 15MB)
-        </p>
-      </div>
-
       <div>
         <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-charcoal">
-          Message (Cover Letter)
+          Message
         </label>
         <textarea
           id="message"
@@ -229,9 +225,15 @@ function ContactForm() {
         )}
       </div>
 
-      <Button type="submit" size="lg">
-        Submit
+      <Button type="submit" size="lg" disabled={isSubmitting}>
+        {isSubmitting ? "Sending..." : "Submit"}
       </Button>
+
+      {error && (
+        <p className="text-sm text-red-500" role="alert">
+          {error}
+        </p>
+      )}
     </form>
   );
 }

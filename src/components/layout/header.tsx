@@ -40,7 +40,7 @@ export function Header() {
 
   return (
     <div className="fixed top-0 right-0 left-0 z-50">
-      {announcementVisible && isHome && (
+      {/* {announcementVisible && isHome && (
         <div className="bg-purple-deep text-white">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 text-xs md:text-sm">
             <div className="flex flex-1 items-center justify-center gap-4 overflow-hidden md:gap-8">
@@ -64,12 +64,12 @@ export function Header() {
             </button>
           </div>
         </div>
-      )}
+      )} */}
 
       <header className={`transition-all duration-500 ${headerBg}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-4">
           <Link href="/" className="relative z-10 block shrink-0 bg-transparent">
-            <BrandLogo variant="transparent" height={44} priority />
+            <BrandLogo variant="transparent" height={60} priority />
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex">
@@ -96,7 +96,7 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
-            <Button
+            {/* <Button
               href={getWhatsAppUrl("general")}
               external
               variant="ghost"
@@ -105,8 +105,8 @@ export function Header() {
               aria-label="WhatsApp"
             >
               <MessageCircle className="h-5 w-5" />
-            </Button>
-            <Button href={siteConfig.bookingUrl} size="sm">
+            </Button> */}
+            <Button href={getWhatsAppUrl("general")} size="sm">
               Book a Therapist
             </Button>
           </div>

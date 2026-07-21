@@ -60,7 +60,7 @@ export const siteConfig = {
     whatsappUrl: getWhatsAppUrl("general"),
   },
   social: {
-    instagram: "https://instagram.com/eunoirawellness",
+    instagram: "https://www.instagram.com/eunoira_wellness_",
     linkedin: "https://linkedin.com/company/eunoirawellness",
     facebook: "https://facebook.com/eunoirawellness",
   },

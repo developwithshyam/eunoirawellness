@@ -8,7 +8,7 @@ export function ReferCta() {
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl bg-charcoal px-8 py-14 text-center md:px-16 md:py-20">
-            <div className="absolute -top-20 -right-20 h-60 w-60 rounded-full bg-purple-mid/20 blur-3xl" />
+            <div className="absolute -top-20 -right-20 h-60 w-60 rounded-full bg-purple-200/20 blur-3xl" />
             <div className="absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-lavender/20 blur-3xl" />
 
             <div className="relative">

@@ -19,7 +19,7 @@ export function AssessmentStrip() {
                   {assessmentStrip.label}
                 </p>
                 <h3 className="mt-2 text-2xl font-semibold md:text-3xl">
-                  {assessmentStrip.offer}
+                  Always Available for You
                 </h3>
               </div>
 
