@@ -88,8 +88,12 @@ export function Header() {
             ))}
 
             <Link
-              href="/#services"
-              className="rounded-full px-4 py-2 text-sm font-medium text-charcoal/80 transition-colors hover:text-purple-deep"
+              href="/services"
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                pathname === "/services"
+                  ? "text-purple-mid"
+                  : "text-charcoal/80 hover:text-purple-deep"
+              }`}
             >
               Services
             </Link>
@@ -141,7 +145,7 @@ export function Header() {
                   </Link>
                 ))}
                 <Link
-                  href="/#services"
+                  href="/services"
                   className="rounded-xl px-4 py-3 text-base font-medium text-charcoal hover:bg-purple-mid/10"
                 >
                   Services

@@ -158,6 +158,15 @@ export const serviceTabs = [
   },
 ] as const;
 
+export const servicesPageContent = {
+  eyebrow: "Our Services",
+  heading: "Choose Your Path to Wellness",
+  subheading:
+    "Explore therapy, counselling, psychiatry, and couple support — all confidential, compassionate, and tailored to you.",
+  bottomCta:
+    "Not sure where to start? Book a free assessment and we'll guide you.",
+};
+
 export const testimonialsContent = {
   eyebrow: "Verified Client Reviews",
   heading: "Stories from People We've Supported",

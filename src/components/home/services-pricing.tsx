@@ -1,32 +1,72 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { serviceTabs } from "@/lib/content";
 import { getServiceWhatsAppUrl } from "@/lib/site-config";
 
-export function ServicesPricing() {
-  const [activeTab, setActiveTab] = useState(0);
+function getTabIndex(serviceId?: string | null) {
+  if (!serviceId) return 0;
+  const index = serviceTabs.findIndex((tab) => tab.id === serviceId);
+  return index >= 0 ? index : 0;
+}
+
+type ServicesPricingProps = {
+  initialServiceId?: string;
+  syncUrl?: boolean;
+  showHeading?: boolean;
+};
+
+export function ServicesPricing({
+  initialServiceId,
+  syncUrl = false,
+  showHeading = true,
+}: ServicesPricingProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const serviceFromUrl = syncUrl ? searchParams.get("service") : null;
+  const resolvedServiceId = serviceFromUrl ?? initialServiceId;
+
+  const [activeTab, setActiveTab] = useState(() => getTabIndex(resolvedServiceId));
   const active = serviceTabs[activeTab];
+
+  useEffect(() => {
+    if (!syncUrl) return;
+    setActiveTab(getTabIndex(searchParams.get("service")));
+  }, [searchParams, syncUrl]);
+
+  const handleTabClick = (index: number) => {
+    setActiveTab(index);
+    if (syncUrl) {
+      router.replace(`/services?service=${serviceTabs[index].id}`, {
+        scroll: false,
+      });
+    }
+  };
 
   return (
     <section id="services" className="bg-white py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
-        <Reveal>
-          <h2 className="text-center text-3xl font-semibold text-purple-deep md:text-4xl">
-            Choose Your Path to Wellness
-          </h2>
-        </Reveal>
+        {showHeading && (
+          <Reveal>
+            <h2 className="text-center text-3xl font-semibold text-purple-deep md:text-4xl">
+              Choose Your Path to Wellness
+            </h2>
+          </Reveal>
+        )}
 
-        <Reveal delay={0.1}>
-          <div className="mt-10 flex flex-wrap justify-center gap-2">
+        <Reveal delay={showHeading ? 0.1 : 0}>
+          <div
+            className={`flex flex-wrap justify-center gap-2 ${showHeading ? "mt-10" : ""}`}
+          >
             {serviceTabs.map((tab, index) => (
               <button
                 key={tab.id}
                 type="button"
-                onClick={() => setActiveTab(index)}
+                onClick={() => handleTabClick(index)}
                 className={`relative rounded-full px-6 py-2.5 text-sm font-semibold transition-colors ${
                   activeTab === index
                     ? "text-white"
@@ -46,7 +86,7 @@ export function ServicesPricing() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.2}>
+        <Reveal delay={showHeading ? 0.2 : 0.1}>
           <div className="mx-auto mt-12 max-w-2xl">
             <AnimatePresence mode="wait">
               <motion.div

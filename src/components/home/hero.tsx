@@ -53,7 +53,7 @@ export function Hero() {
 
           <Reveal delay={0.4}>
             <div className="hero-ctas mt-6 flex flex-col gap-3 sm:flex-row md:mt-8 md:gap-4">
-              <Button href="/#services" size="lg" className="w-full sm:w-auto">
+              <Button href="/services" size="lg" className="w-full sm:w-auto">
                 Check our services
               </Button>
               <Button

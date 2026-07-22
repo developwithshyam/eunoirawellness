@@ -27,6 +27,10 @@ export function getServiceWhatsAppUrl(serviceId: ServiceWhatsAppIntent) {
   return getWhatsAppUrl(serviceId);
 }
 
+export function getServicePageUrl(serviceId: ServiceWhatsAppIntent) {
+  return `/services?service=${serviceId}`;
+}
+
 /** Builds a wa.me link with a pre-filled message — customer only taps Send */
 export function getWhatsAppUrl(intent: WhatsAppIntent = "general") {
   const text = whatsappMessages[intent];
@@ -77,10 +81,10 @@ export const footerColumns = [
   {
     title: "Talk to Expert",
     links: [
-      { label: "Individual Counselling", href: "/#services" },
-      { label: "Teens Counselling", href: "/#services" },
-      { label: "Couples Counselling", href: "/#services" },
-      { label: "Parents Counselling", href: "/#services" },
+      { label: "Individual Counselling", href: getServicePageUrl("therapy") },
+      { label: "Teens Counselling", href: getServicePageUrl("counselling") },
+      { label: "Couples Counselling", href: getServicePageUrl("couple") },
+      { label: "Parents Counselling", href: getServicePageUrl("counselling") },
     ],
   },
 
