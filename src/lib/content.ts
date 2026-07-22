@@ -15,26 +15,26 @@ export const audienceCards = [
   {
     title: "Individual",
     subtitle: "Therapy for me",
-    href: "/#services",
+    href: "/",
     icon: "user",
   },
   {
     title: "Teens",
     subtitle: "For Ages 13–17",
-    href: "/#services",
+    href: "/",
     icon: "users",
   },
   {
     title: "Couples",
     subtitle: "Therapy for us",
-    href: "/#services",
+    href: "/",
     icon: "heart",
   },
   {
-    title: "Assessment",
-    subtitle: "Instant Results",
-    href: "/#services",
-    icon: "clipboard",
+    title: "Parents",
+    subtitle: "Counselling for Parents",
+    href: "/",
+    icon: "users",
   },
 ] as const;
 
@@ -60,7 +60,7 @@ export const foundersNoteContent = {
     "Eunoira Wellness was founded on the belief that compassionate care, thoughtful reflection, and evidence-based practice can empower individuals to lead healthier, more meaningful lives. Our mission is to create a space where healing begins with understanding and every journey is met with dignity, empathy, and hope.",
   name: "Soumya Ayoob",
   role: "Founder, Eunoira Wellness",
-  image: "/images/founder.png",
+  image: "/images/founder-2.png",
 };
 
 export const therapistsSection = {

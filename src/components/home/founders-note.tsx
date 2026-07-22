@@ -6,9 +6,7 @@ export function FoundersNote() {
     <section className="relative z-10 bg-white lg:bg-transparent">
       <div className="mx-auto grid max-w-7xl gap-8 px-6 py-16 sm:px-8 md:py-20 lg:min-h-screen lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8 xl:gap-24">
         <div className="relative max-w-xl lg:max-w-none">
-          <p className="text-xs font-semibold tracking-[0.3em] text-sage uppercase md:text-sm">
-            {foundersNoteContent.eyebrow}
-          </p>
+      
 
           <h2 className="gradient-text mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-[3.25rem] lg:leading-tight">
             {foundersNoteContent.heading}
@@ -27,12 +25,21 @@ export function FoundersNote() {
             </blockquote>
           </div>
 
-          <footer className="mt-8 hidden border-t border-lavender/30 pt-8 lg:block lg:mt-12">
-            <p className="text-lg font-semibold text-charcoal">
-              {foundersNoteContent.name}
+          <footer className="mt-8 hidden  border-t pl-2 border-lavender/30 pt-8 lg:block lg:mt-12">
+            <p className="text-[1.25rem] gradient-text font-semibold">
+              Soumya Ayoob
             </p>
-            <p className="mt-1 text-sm tracking-wide text-purple-mid/70 uppercase">
-              {foundersNoteContent.role}
+            <p className="mt-1 text-sm tracking-wide text-gray-600 uppercase">
+              Founder - Eunoira Wellness
+            </p>
+            <p className="mt-1 text-sm tracking-wide text-gray-600 uppercase">
+              Psychology Counsellor
+            </p>
+            <p className="mt-1 text-sm tracking-wide text-gray-600 uppercase">
+              Psychotherapist
+            </p>
+            <p className="mt-1 text-sm tracking-wide text-gray-600 uppercase">
+              Mentalist
             </p>
           </footer>
         </div>

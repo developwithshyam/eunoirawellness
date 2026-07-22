@@ -77,20 +77,17 @@ export const footerColumns = [
   {
     title: "Talk to Expert",
     links: [
-      { label: "Relationship Coach", href: "/#services" },
-      { label: "Career Coach", href: "/#services" },
-      { label: "Psychologist Near Me", href: "/#therapists" },
+      { label: "Individual Counselling", href: "/#services" },
+      { label: "Teens Counselling", href: "/#services" },
+      { label: "Couples Counselling", href: "/#services" },
+      { label: "Parents Counselling", href: "/#services" },
     ],
   },
-  {
-    title: "For Business",
-    links: [{ label: "Women's Health", href: "/#services" }],
-  },
+
   {
     title: "Resources",
     links: [
       { label: "About Us", href: "/about" },
-      { label: "Careers", href: "/contact?intent=careers" },
       { label: "Contact Us", href: "/contact" },
     ],
   },
@@ -104,9 +101,9 @@ export const legalLinks = [
 ] as const;
 
 export const trustBadges = [
-  "Certified & Available",
-  "Private & Secure",
-  "SSL Secured (UPI & Card)",
+  "Certified",
+  "Private",
+  "Secure",
 ] as const;
 
 export const workshops = [
