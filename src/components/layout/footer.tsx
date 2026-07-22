@@ -1,7 +1,7 @@
 import { MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { BrandLogo } from "@/components/ui/brand-logo";
-import { InstagramIcon, LinkedinIcon } from "@/components/ui/social-icons";
+import { InstagramIcon, LinkedinIcon, FacebookIcon } from "@/components/ui/social-icons";
 import {
   footerColumns,
   getWhatsAppUrl,
@@ -68,13 +68,13 @@ export function Footer() {
                 <InstagramIcon className="h-4 w-4" />
               </a>
               <a
-                href={siteConfig.social.linkedin}
+                href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full bg-white/10 p-2.5 transition-colors hover:bg-purple-mid"
                 aria-label="LinkedIn"
               >
-                <LinkedinIcon className="h-4 w-4" />
+                <FacebookIcon className="h-4 w-4" />
               </a>
               <a
                 href={getWhatsAppUrl("general")}

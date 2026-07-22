@@ -62,7 +62,7 @@ export const siteConfig = {
   social: {
     instagram: "https://www.instagram.com/eunoira_wellness_",
     linkedin: "https://linkedin.com/company/eunoirawellness",
-    facebook: "https://facebook.com/eunoirawellness",
+    facebook: "https://www.facebook.com/share/1DZrKtWN8k/?mibextid=wwXIfr",
   },
   bookingUrl: "/contact?intent=booking",
 } as const;
