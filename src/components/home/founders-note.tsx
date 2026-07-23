@@ -25,6 +25,10 @@ export function FoundersNote() {
             </blockquote>
           </div>
 
+
+
+
+
           <footer className="mt-8 pl-2 lg:mt-12">
             <p className="text-[1.25rem] gradient-text font-semibold">
               Soumya Ayoob
