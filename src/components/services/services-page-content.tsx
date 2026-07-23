@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ServicesPricing } from "@/components/home/services-pricing";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
@@ -51,14 +51,17 @@ function ServicesBottomCta() {
 }
 
 function ServicesPricingSection() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const serviceId = searchParams.get("service") ?? undefined;
 
   return (
     <ServicesPricing
       initialServiceId={serviceId}
-      syncUrl
       showHeading={false}
+      onTabChange={(id) =>
+        router.replace(`/services?service=${id}`, { scroll: false })
+      }
     />
   );
 }

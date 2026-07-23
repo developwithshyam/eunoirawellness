@@ -1,7 +1,6 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
@@ -16,35 +15,25 @@ function getTabIndex(serviceId?: string | null) {
 
 type ServicesPricingProps = {
   initialServiceId?: string;
-  syncUrl?: boolean;
   showHeading?: boolean;
+  onTabChange?: (serviceId: string) => void;
 };
 
 export function ServicesPricing({
   initialServiceId,
-  syncUrl = false,
   showHeading = true,
+  onTabChange,
 }: ServicesPricingProps) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const serviceFromUrl = syncUrl ? searchParams.get("service") : null;
-  const resolvedServiceId = serviceFromUrl ?? initialServiceId;
-
-  const [activeTab, setActiveTab] = useState(() => getTabIndex(resolvedServiceId));
+  const [activeTab, setActiveTab] = useState(() => getTabIndex(initialServiceId));
   const active = serviceTabs[activeTab];
 
   useEffect(() => {
-    if (!syncUrl) return;
-    setActiveTab(getTabIndex(searchParams.get("service")));
-  }, [searchParams, syncUrl]);
+    setActiveTab(getTabIndex(initialServiceId));
+  }, [initialServiceId]);
 
   const handleTabClick = (index: number) => {
     setActiveTab(index);
-    if (syncUrl) {
-      router.replace(`/services?service=${serviceTabs[index].id}`, {
-        scroll: false,
-      });
-    }
+    onTabChange?.(serviceTabs[index].id);
   };
 
   return (
