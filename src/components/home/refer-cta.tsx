@@ -1,8 +1,24 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { referContent } from "@/lib/content";
+import { siteConfig } from "@/lib/site-config";
 
 export function ReferCta() {
+  const [copied, setCopied] = useState(false);
+
+  const handleRefer = async () => {
+    try {
+      await navigator.clipboard.writeText(siteConfig.url);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // ignore — clipboard may be unavailable outside secure context
+    }
+  };
+
   return (
     <section className="py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -19,10 +35,12 @@ export function ReferCta() {
                 {referContent.body}
               </p>
               <Button
-                href="/contact?intent=general"
+                type="button"
+                onClick={handleRefer}
                 className="mt-8 !bg-white !text-purple-deep hover:!bg-white/90"
+                aria-live="polite"
               >
-                {referContent.cta}
+                {copied ? "Link copied!" : referContent.cta}
               </Button>
             </div>
           </div>

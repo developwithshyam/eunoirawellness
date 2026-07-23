@@ -86,7 +86,6 @@ const organizationSchema = {
   medicalSpecialty: "Psychiatric",
   sameAs: [
     siteConfig.social.instagram,
-    siteConfig.social.linkedin,
     siteConfig.social.facebook,
   ],
 };

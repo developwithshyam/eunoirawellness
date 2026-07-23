@@ -10,7 +10,7 @@ import { siteConfig } from "@/lib/site-config";
 
 function ServicesPageHero() {
   return (
-    <section className="bg-gradient-to-b from-cream via-white to-cream pt-12 pb-16 md:pt-20 md:pb-20">
+    <section className="pt-[var(--hero-header-offset)] bg-gradient-to-b from-cream via-white to-cream pb-16 md:pb-20">
       <div className="mx-auto max-w-4xl px-4 text-center md:px-6">
         <Reveal>
           <p className="mb-4 text-sm font-semibold tracking-[0.2em] text-sage uppercase">
@@ -38,10 +38,10 @@ function ServicesBottomCta() {
               {servicesPageContent.bottomCta}
             </h2>
             <Button
-              href={siteConfig.bookingUrl}
+              href={siteConfig.contact.whatsappUrl}
               className="mt-8 !bg-white !text-purple-deep hover:!bg-white/90"
             >
-              Book Now
+              Get in Touch
             </Button>
           </div>
         </Reveal>

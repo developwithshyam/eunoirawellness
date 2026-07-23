@@ -1,4 +1,6 @@
-const WHATSAPP_NUMBER = "918921569922";
+const WHATSAPP_NUMBER = "919292012779"; 
+
+const BASE_URL = "https://www.eunoirawellness.com";
 
 export const whatsappMessages = {
   general:
@@ -55,20 +57,18 @@ export const siteConfig = {
   ],
   url: "https://eunoirawellness.com",
   contact: {
-    email: "hello@eunoirawellness.com",
-    careersEmail: "careers@eunoirawellness.com",
-    phone: "+91 89215 69922",
-    whatsapp: "+91 89215 69922",
+    email: "eunoirawellness11@gmail.com",
+    careersEmail: "eunoirawellness11@gmail.com",
+    phone: "+91 92920 12779",
+    whatsapp: "+91 92920 12779",
     whatsappNumber: WHATSAPP_NUMBER,
     /** Default WhatsApp link with general enquiry message */
     whatsappUrl: getWhatsAppUrl("general"),
   },
   social: {
     instagram: "https://www.instagram.com/eunoira_wellness_",
-    linkedin: "https://linkedin.com/company/eunoirawellness",
     facebook: "https://www.facebook.com/share/1DZrKtWN8k/?mibextid=wwXIfr",
   },
-  bookingUrl: "/contact?intent=booking",
 } as const;
 
 export const navLinks = [

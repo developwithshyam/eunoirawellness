@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, MessageCircle, Phone } from "lucide-react";
-import { InstagramIcon, LinkedinIcon } from "@/components/ui/social-icons";
+import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/components/ui/social-icons";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -241,14 +241,14 @@ function ContactForm() {
 function ContactPageInner() {
   return (
     <>
-      <section className="bg-purple-deep py-8 text-center text-white md:py-10">
+      <section className="pt-[var(--hero-header-offset)] bg-purple-deep pb-8 text-center text-white md:pb-10">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
           <p className="text-sm md:text-base">{contactContent.bookingStrip}</p>
           <Button
-            href={siteConfig.bookingUrl}
+            href={siteConfig.contact.whatsappUrl}
             className="mt-4 !bg-white !text-purple-deep hover:!bg-white/90"
           >
-            Book a Therapist
+            Get in Touch
           </Button>
         </div>
       </section>
@@ -328,13 +328,13 @@ function ContactPageInner() {
                   <InstagramIcon className="h-5 w-5" />
                 </a>
                 <a
-                  href={siteConfig.social.linkedin}
+                  href={siteConfig.social.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full bg-purple-mid/10 p-3 text-purple-mid transition-colors hover:bg-purple-mid hover:text-white"
-                  aria-label="LinkedIn"
+                  aria-label="Facebook"
                 >
-                  <LinkedinIcon className="h-5 w-5" />
+                  <FacebookIcon className="h-5 w-5" />
                 </a>
               </div>
             </div>
