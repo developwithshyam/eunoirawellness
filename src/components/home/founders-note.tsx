@@ -25,7 +25,7 @@ export function FoundersNote() {
             </blockquote>
           </div>
 
-          <footer className="mt-8 hidden  border-t pl-2 border-lavender/30 pt-8 lg:block lg:mt-12">
+          <footer className="mt-8 border-t pl-2 border-lavender/30 pt-8 lg:mt-12">
             <p className="text-[1.25rem] gradient-text font-semibold">
               Soumya Ayoob
             </p>
@@ -55,17 +55,9 @@ export function FoundersNote() {
               className="object-cover object-top"
             />
             <div
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-purple-deep/90 via-purple-deep/20 to-transparent lg:from-purple-deep/10 lg:to-transparent"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-purple-deep/10 to-transparent"
               aria-hidden="true"
             />
-            <div className="absolute bottom-0 left-0 p-5 md:p-6 lg:hidden">
-              <p className="text-lg font-semibold text-white">
-                {foundersNoteContent.name}
-              </p>
-              <p className="mt-1 text-sm tracking-wide text-white/85 uppercase">
-                {foundersNoteContent.role}
-              </p>
-            </div>
           </div>
         </div>
       </div>
