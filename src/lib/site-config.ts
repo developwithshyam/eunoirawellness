@@ -2,6 +2,7 @@ const WHATSAPP_NUMBER = "919292012779";
 
 const BASE_URL = "https://www.eunoirawellness.com";
 
+
 export const whatsappMessages = {
   general:
     "Hi Eunoira Wellness, I'd like to enquire about your services. Could you please help me?",
@@ -69,6 +70,7 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/eunoira_wellness_",
     facebook: "https://www.facebook.com/share/1DZrKtWN8k/?mibextid=wwXIfr",
   },
+  bookingUrl: "/contact?intent=booking",
 } as const;
 
 export const navLinks = [
