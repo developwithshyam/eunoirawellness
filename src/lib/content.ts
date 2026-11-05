@@ -59,8 +59,15 @@ export const foundersNoteContent = {
   quote:
     "Eunoira Wellness was founded on the belief that compassionate care, thoughtful reflection, and evidence-based practice can empower individuals to lead healthier, more meaningful lives. Our mission is to create a space where healing begins with understanding and every journey is met with dignity, empathy, and hope.",
   name: "Soumya Ayoob",
-  role: "Founder, Eunoira Wellness",
-  image: "/images/founder-2.png",
+  titles: [
+    "Founder - Eunoira Wellness",
+    "Psychology Counsellor",
+    "Clinical Hypnotherapist",
+    "CBT Therapist",
+    "Access bar/NLP Practitioner",
+    "Psychooncology Coach",
+  ],
+  image: "/images/founder-3.png",
 };
 
 export const therapistsSection = {
@@ -86,22 +93,30 @@ export const conditions = [
 
 export const therapists = [
   {
-    name: "Lakshmy Nandana",
-    role: "Consultant Psychologist",
-    education: "Masters in Clinical Psychology",
-    image: "/images/lakshmi.png",
-  },
-  {
     name: "Anumol S Antony",
-    role: "Consultant Psychologist",
-    education: "Masters in Counselling Psychology",
+    credentials: [
+      "Consultant Psychologist",
+      "Masters in Counselling Psychology",
+    ],
     image: "/images/anumol.png",
   },
   {
-    name: "Devapriya S Biju",
-    role: "Consultant Psychologist",
-    education: "Masters in Clinical Psychology",
-    image: "/images/devapriya.png",
+    name: "Dr. Jishna Abdutty",
+    credentials: [
+      "Consultant Physician",
+      "Consultant Psychologist",
+      "Life Coach",
+    ],
+    image: "/images/employee1.png",
+  },
+  {
+    name: "Thamjeedha C",
+    credentials: [
+      "Consultant Psychologist",
+      "(Clinical Psychology)",
+      "Hypnotherapy Practitioner",
+    ],
+    image: "/images/employee2.png",
   },
 ] as const;
 

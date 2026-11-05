@@ -31,20 +31,16 @@ export function FoundersNote() {
 
           <footer className="mt-8 pl-2 lg:mt-12">
             <p className="text-[1.25rem] gradient-text font-semibold">
-              Soumya Ayoob
+              {foundersNoteContent.name}
             </p>
-            <p className="mt-1 text-sm tracking-wide text-gray-600 uppercase">
-              Founder - Eunoira Wellness
-            </p>
-            <p className="mt-1 text-sm tracking-wide text-gray-600 uppercase">
-              Psychology Counsellor
-            </p>
-            <p className="mt-1 text-sm tracking-wide text-gray-600 uppercase">
-              Psychotherapist
-            </p>
-            <p className="mt-1 text-sm tracking-wide text-gray-600 uppercase">
-              Mentalist
-            </p>
+            {foundersNoteContent.titles.map((title) => (
+              <p
+                key={title}
+                className="mt-1 text-sm tracking-wide text-gray-600 uppercase"
+              >
+                {title}
+              </p>
+            ))}
           </footer>
         </div>
 

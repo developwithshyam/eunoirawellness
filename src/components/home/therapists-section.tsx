@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { therapists, therapistsSection } from "@/lib/content";
 
+const TEAM_MEMBER_ALT = "Eunoira Wellness team member";
+
 function TherapistCard({
   therapist,
   priority = false,
@@ -8,11 +10,16 @@ function TherapistCard({
   therapist: (typeof therapists)[number];
   priority?: boolean;
 }) {
+  const alt =
+    "name" in therapist && therapist.name
+      ? therapist.name
+      : TEAM_MEMBER_ALT;
+
   return (
     <div className="group relative aspect-[3/4] overflow-hidden rounded-2xl">
       <Image
         src={therapist.image}
-        alt={therapist.name}
+        alt={alt}
         fill
         priority={priority}
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -20,9 +27,17 @@ function TherapistCard({
       />
       <div className="absolute inset-0 bg-gradient-to-t from-purple-deep/90 via-purple-deep/30 to-transparent" />
       <div className="absolute bottom-0 left-0 p-5 md:p-6">
-        <h3 className="text-lg font-semibold text-white">{therapist.name}</h3>
-        <p className="mt-1 text-sm text-white/90">{therapist.role}</p>
-        <p className="mt-1 text-xs text-white/75">{therapist.education}</p>
+        {"name" in therapist && therapist.name ? (
+          <h3 className="text-lg font-semibold text-white">{therapist.name}</h3>
+        ) : null}
+        {therapist.credentials.map((line, i) => (
+          <p
+            key={line}
+            className={`mt-1 ${i === 0 ? "text-sm text-white/90" : "text-xs text-white/75"}`}
+          >
+            {line}
+          </p>
+        ))}
       </div>
     </div>
   );
@@ -47,7 +62,7 @@ export function TherapistsSection() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {therapists.map((therapist, index) => (
             <TherapistCard
-              key={therapist.name}
+              key={therapist.image}
               therapist={therapist}
               priority={index === 0}
             />
