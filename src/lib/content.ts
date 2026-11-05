@@ -93,12 +93,13 @@ export const conditions = [
 
 export const therapists = [
   {
-    name: "Anumol S Antony",
+    name: "Thamjeedha C",
     credentials: [
       "Consultant Psychologist",
-      "Masters in Counselling Psychology",
+      "(Clinical Psychology)",
+      "Hypnotherapy Practitioner",
     ],
-    image: "/images/anumol.png",
+    image: "/images/employee2.png",
   },
   {
     name: "Dr. Jishna Abdutty",
@@ -110,13 +111,12 @@ export const therapists = [
     image: "/images/employee1.png",
   },
   {
-    name: "Thamjeedha C",
+    name: "Anumol S Antony",
     credentials: [
       "Consultant Psychologist",
-      "(Clinical Psychology)",
-      "Hypnotherapy Practitioner",
+      "Masters in Counselling Psychology",
     ],
-    image: "/images/employee2.png",
+    image: "/images/anumol.png",
   },
 ] as const;
 

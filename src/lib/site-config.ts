@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = "919292012779"; 
+const WHATSAPP_NUMBER = "918075012779"; 
 
 const BASE_URL = "https://www.eunoirawellness.com";
 
@@ -60,8 +60,8 @@ export const siteConfig = {
   contact: {
     email: "eunoirawellness11@gmail.com",
     careersEmail: "eunoirawellness11@gmail.com",
-    phone: "+91 92920 12779",
-    whatsapp: "+91 92920 12779",
+    phone: "+91 80750 12779",
+    whatsapp: "+91 80750 12779",
     whatsappNumber: WHATSAPP_NUMBER,
     /** Default WhatsApp link with general enquiry message */
     whatsappUrl: getWhatsAppUrl("general"),
